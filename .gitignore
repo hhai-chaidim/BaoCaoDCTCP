@@ -1,20 +1,80 @@
-# OS/editor
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
 
-# Build/cache
+# ==========================================
+# 1. Tai lieu bai bao goc - khong dua len GitHub
+# Van giu lai yeu cau mon hoc va README tai lieu
+# ==========================================
+/01_TAI_LIEU_GOC/BAI_BAO_1_LY_THUYET/
+/01_TAI_LIEU_GOC/BAI_BAO_2_THUC_NGHIEM/
+
+# ==========================================
+# 2. Ban phan tich AI va tep ban giao noi bo
+# ==========================================
+/02_PHAN_TICH/
+/08_BAN_GIAO_AI/
+/09_NHAT_KY/
+
+# ==========================================
+# 3. Ban nhap bao cao - chi dua ban cuoi len GitHub
+# ==========================================
+/07_BAO_CAO/drafts/
+
+# ==========================================
+# 4. Log va du lieu tam cua mo phong
+# Giu lai CSV, hinh ve va ket qua can tai hien
+# ==========================================
+/06_KET_QUA/logs/
+/06_KET_QUA/raw/
+/06_KET_QUA/tmp/
+
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# ==========================================
+# 5. Tep sinh ra khi build/chay NS-3 va C/C++
+# ==========================================
 build/
 cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile.cmake
+*.o
+*.a
+*.so
+*.pcap
+*.tr
+*.out
+
+# ==========================================
+# 6. Python
+# ==========================================
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
+env/
 
-# Keep results/logs unless deliberately excluded
-# Add large generated files here only if you decide not to version them.
+# ==========================================
+# 7. Editor va he dieu hanh
+# ==========================================
+.vscode/
+.idea/
+.cache/
+.DS_Store
+Thumbs.db
 
-# Secrets
-.env
-.env.*
-*.pem
-*.key
+# ==========================================
+# 8. Tep tam khi tao bao cao LaTeX
+# Khong ignore PDF/DOCX cua bao cao cuoi
+# ==========================================
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.lof
+*.lot
