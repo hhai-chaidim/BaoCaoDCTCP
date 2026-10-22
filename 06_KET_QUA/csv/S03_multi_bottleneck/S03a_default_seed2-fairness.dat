@@ -1,0 +1,6 @@
+Average throughput for S1-R1 flows: 23.39 Mbps; fairness: 0.993
+Average throughput for S2-R2 flows: 470.17 Mbps; fairness: 0.999
+Average throughput for S3-R1 flows: 73.02 Mbps; fairness: 0.998
+Aggregate user-level throughput for flows through T1: 9.637 Gbps
+Aggregate user-level throughput for flows to R1: 0.964 Gbps
+Normalized overall Jain fairness index (40 flows): 0.8841

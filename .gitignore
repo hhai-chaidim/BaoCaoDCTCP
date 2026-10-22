@@ -1,30 +1,38 @@
-
 # ==========================================
-# 1. Tai lieu bai bao goc - khong dua len GitHub
-# Van giu lai yeu cau mon hoc va README tai lieu
+# 1. Tài liệu bài báo gốc (bản quyền) - không đưa lên GitHub
+# Vẫn giữ lại yêu cầu môn học (01_TAI_LIEU_GOC/YEU_CAU_MON_HOC/)
 # ==========================================
 /01_TAI_LIEU_GOC/BAI_BAO_1_LY_THUYET/
 /01_TAI_LIEU_GOC/BAI_BAO_2_THUC_NGHIEM/
 
 # ==========================================
-# 2. Ban phan tich AI va tep ban giao noi bo
+# 2. Thư mục quản lý, phân tích AI và bàn giao nội bộ
+# Chỉ nộp Báo cáo trình bày + Source code + Kết quả kiểm chứng
 # ==========================================
+/00_QUAN_LY/
 /02_PHAN_TICH/
+/05_THIET_KE_THI_NGHIEM/
 /08_BAN_GIAO_AI/
 /09_NHAT_KY/
 
 # ==========================================
-# 3. Ban nhap bao cao - chi dua ban cuoi len GitHub
+# 3. Bản nháp báo cáo - chỉ đưa bản cuối (07_BAO_CAO/final/) lên GitHub
 # ==========================================
 /07_BAO_CAO/drafts/
 
 # ==========================================
-# 4. Log va du lieu tam cua mo phong
-# Giu lai CSV, hinh ve va ket qua can tai hien
+# 4. Log, dữ liệu tạm và script chạy từng phần
+# Giữ lại:
+# - 03_DAC_TA_CHUNG/ (Đặc tả mô hình, kịch bản, test plan)
+# - 04_SOURCE_CODE/ (original/, modified/, run_all_experiments.sh, analyze_and_plot.py)
+# - 06_KET_QUA/ (csv/, comparison/, figures/)
+# - 07_BAO_CAO/final/ (Báo cáo chính thức)
 # ==========================================
 /06_KET_QUA/logs/
 /06_KET_QUA/raw/
 /06_KET_QUA/tmp/
+/04_SOURCE_CODE/scripts/rerun_*.sh
+/04_SOURCE_CODE/scripts/run_remaining_*.sh
 
 *.log
 *.tmp
@@ -33,7 +41,7 @@
 *~
 
 # ==========================================
-# 5. Tep sinh ra khi build/chay NS-3 va C/C++
+# 5. Tệp sinh ra khi build/chạy NS-3 và C/C++
 # ==========================================
 build/
 cmake-build-*/
@@ -57,17 +65,19 @@ venv/
 env/
 
 # ==========================================
-# 7. Editor va he dieu hanh
+# 7. Editor, IDE (VS Code, Clangd, Obsidian) và Hệ điều hành
 # ==========================================
 .vscode/
+.clangd
+.obsidian/
 .idea/
 .cache/
 .DS_Store
 Thumbs.db
 
 # ==========================================
-# 8. Tep tam khi tao bao cao LaTeX
-# Khong ignore PDF/DOCX cua bao cao cuoi
+# 8. Tệp tạm khi tạo báo cáo LaTeX
+# Không ignore PDF/DOCX của báo cáo cuối
 # ==========================================
 *.aux
 *.bbl

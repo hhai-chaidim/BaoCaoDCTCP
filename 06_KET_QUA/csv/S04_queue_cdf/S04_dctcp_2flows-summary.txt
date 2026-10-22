@@ -1,0 +1,5 @@
+protocol=TcpDctcp
+nFlows=2
+enableEcn=1
+K=20
+aggregateThroughputGbps=0.9640

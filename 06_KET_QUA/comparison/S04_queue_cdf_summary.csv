@@ -1,0 +1,5 @@
+case,throughput_gbps,mean_pkts,median_pkts,p90_pkts,p99_pkts,max_pkts,mean_kb,max_kb
+S04_dctcp_2flows,0.964,21.54,22.0,23.0,24.0,25,32.31,37.5
+S04_dctcp_20flows,0.964,27.12,27.0,41.0,48.0,54,40.67,81.0
+S04_tcp_2flows,0.9491,299.82,262.0,412.0,465.0,466,448.22,699.0
+S04_tcp_20flows,0.9638,369.58,384.0,450.0,465.0,466,554.36,699.0

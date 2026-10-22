@@ -1,0 +1,6 @@
+case,steady_cwnd_mean_seg,steady_cwnd_min_seg,steady_cwnd_max_seg,steady_q_delay_mean_ms,steady_q_pkts_mean,steady_tput_mean_mbps
+DCTCP_ECN_3us,40.68,37.0,44.3,8.86,36.91,48.2
+DCTCP_ECN_10ms,80.71,78.0,83.97,8.51,35.45,48.2
+DCTCP_ECN_50ms,241.52,235.88,245.14,7.16,29.84,48.2
+S02_reno_noecn_10ms,39.5,39.5,39.5,0.0,0.0,42.85
+S02_dctcp_noecn_10ms,59.15,1.0,83.99,1.8,7.49,18.75

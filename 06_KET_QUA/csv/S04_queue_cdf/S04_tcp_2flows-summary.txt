@@ -1,0 +1,5 @@
+protocol=TcpLinuxReno
+nFlows=2
+enableEcn=0
+K=20
+aggregateThroughputGbps=0.9491
