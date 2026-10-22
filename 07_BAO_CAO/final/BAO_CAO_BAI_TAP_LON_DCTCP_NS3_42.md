@@ -1,10 +1,10 @@
 # BÁO CÁO BÀI TẬP LỚN: NGHIÊN CỨU, HIỆN THỰC HÓA VÀ KIỂM CHỨNG GIAO THỨC DATA CENTER TCP (DCTCP) TRÊN NS-3.42
 
 > **Môn học**: Mô phỏng mạng với NS-3  
-> **Phiên bản bộ mô phỏng**: NS-3.42 (`/home/hhai/ns-allinone-3.42/ns-3.42`)  
+> **Phiên bản bộ mô phỏng**: NS-3.42  
 > **Tài liệu nghiên cứu gốc**:
-> 1. **Bài báo 1 (Lý thuyết & Thiết kế gốc)**: Mohammad Alizadeh, Albert Greenberg, David A. Maltz, Jitendra Padhye, Parveen Patel, Balaji Prabhakar, Sudipta Sengupta, Murari Sridharan, *"Data Center TCP (DCTCP)"*, ACM SIGCOMM 2010, pp. 63–74 (`01_TAI_LIEU_GOC/BAI_BAO_1_LY_THUYET/1851182.1851192.pdf`).
-> 2. **Bài báo 2 (Thực nghiệm & Mô hình NS-3)**: Vivek Jain, Thomas R. Henderson, Shravya K. S., Mohit P. Tahiliani, *"Data Center TCP in ns-3: Implementation, Validation and Evaluation"*, ACM WNS3 2020, pp. 65–72 (`01_TAI_LIEU_GOC/BAI_BAO_2_THUC_NGHIEM/3389400.3389405.pdf`).
+> 1. **Bài báo 1 (Lý thuyết & Thiết kế gốc)**: Mohammad Alizadeh, Albert Greenberg, David A. Maltz, Jitendra Padhye, Parveen Patel, Balaji Prabhakar, Sudipta Sengupta, Murari Sridharan, *"Data Center TCP (DCTCP)"*, ACM SIGCOMM 2010, pp. 63–74.
+> 2. **Bài báo 2 (Thực nghiệm & Mô hình NS-3)**: Vivek Jain, Thomas R. Henderson, Shravya K. S., Mohit P. Tahiliani, *"Data Center TCP in ns-3: Implementation, Validation and Evaluation"*, ACM WNS3 2020, pp. 65–72.
 
 ---
 
@@ -114,13 +114,13 @@ Trong Bài báo 2 (Jain et al., WNS3 2020) và mã nguồn NS-3.42, mô hình DC
 ## 3. YÊU CẦU 3: CÀI ĐẶT, TÁI SỬ DỤNG VÀ MỞ RỘNG MÔ HÌNH TRÊN NS-3.42
 
 ### 3.1. Khảo sát và Lưu trữ Mã nguồn Gốc trong NS-3.42
-Qua kiểm tra cây mã nguồn tại `/home/hhai/ns-allinone-3.42/ns-3.42/`, toàn bộ mô hình `TcpDctcp` và các kịch bản kiểm thử của tác giả Bài báo 2 đã được tích hợp sẵn. Chúng tôi đã sao lưu nguyên trạng bản gốc vào thư mục [04_SOURCE_CODE/original/](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/) để đối chiếu:
-- Mô hình lõi DCTCP: [tcp-dctcp.h](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/tcp-dctcp.h), [tcp-dctcp.cc](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/tcp-dctcp.cc).
-- Bộ kiểm thử đơn vị (Unit tests): [tcp-dctcp-test.cc](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/tcp-dctcp-test.cc), [tcp-ecn-test.cc](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/tcp-ecn-test.cc).
-- Các kịch bản mẫu của tác giả Bài báo 2: [dctcp-example.cc](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/dctcp-example.cc) (kịch bản Multi-bottleneck 40 luồng) và [tcp-validation.cc](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/tcp-validation.cc) (kịch bản tự kiểm chứng Dumbbell 50 Mbps).
+Qua kiểm tra cây mã nguồn NS-3.42, toàn bộ mô hình `TcpDctcp` và các kịch bản kiểm thử của tác giả Bài báo 2 đã được tích hợp sẵn. Bản gốc được lưu trữ tại thư mục [`../../04_SOURCE_CODE/original/`](../../04_SOURCE_CODE/original/) để đối chiếu:
+- Mô hình lõi DCTCP: [`tcp-dctcp.h`](../../04_SOURCE_CODE/original/tcp-dctcp.h), [`tcp-dctcp.cc`](../../04_SOURCE_CODE/original/tcp-dctcp.cc).
+- Bộ kiểm thử đơn vị (Unit tests): [`tcp-dctcp-test.cc`](../../04_SOURCE_CODE/original/tcp-dctcp-test.cc), [`tcp-ecn-test.cc`](../../04_SOURCE_CODE/original/tcp-ecn-test.cc).
+- Các kịch bản mẫu của tác giả Bài báo 2: [`dctcp-example.cc`](../../04_SOURCE_CODE/original/dctcp-example.cc) (kịch bản Multi-bottleneck 40 luồng) và [`tcp-validation.cc`](../../04_SOURCE_CODE/original/tcp-validation.cc) (kịch bản tự kiểm chứng Dumbbell 50 Mbps).
 
 ### 3.2. Các Phát hiện Quan trọng khi Kiểm toán Mã nguồn Tác giả trên NS-3.42
-Quá trình đọc hiểu và kiểm toán mã nguồn thực tế ([T03_T04_doi_chieu_NS3_42_va_diem_chua_chac_chan.md](file:///home/hhai/BaoCao_NS3/02_PHAN_TICH/DOI_CHIEU/T03_T04_doi_chieu_NS3_42_va_diem_chua_chac_chan.md)) đã phát hiện **3 chi tiết kỹ thuật quan trọng** trong mã nguồn NS-3.42:
+Quá trình đọc hiểu và kiểm toán mã nguồn thực tế trên NS-3.42 đã phát hiện **3 chi tiết kỹ thuật quan trọng**:
 1. **Cấu hình ngưỡng RED trong `dctcp-example.cc` (dòng 387–409) dùng dải tuyến tính `MinTh != MaxTh`**:
    - Trên liên kết 10Gbps (`T1 -> T2`): tác giả đặt `MinTh = 50, MaxTh = 150` gói (thay vì `MinTh = MaxTh = 65` của Bài báo 1).
    - Trên các liên kết 1Gbps (`T2 -> R1` và các nhánh 1Gbps): tác giả đặt `MinTh = 20, MaxTh = 60` gói (thay vì `MinTh = MaxTh = 20` của Bài báo 1).
@@ -130,28 +130,28 @@ Quá trình đọc hiểu và kiểm toán mã nguồn thực tế ([T03_T04_doi
    - Phương thức `TcpDctcp::Init()` luôn cưỡng bức đặt `tcb->m_useEcn = TcpSocketState::On` bất chấp cấu hình `TcpSocketBase::UseEcn`. Khi bộ định tuyến trung gian tắt ECN (`RedQueueDisc::UseEcn = false`), gói tin bị đánh rơi (classic drop) nhưng `m_alpha` tại đầu gửi đã suy giảm về `0`, khiến `TcpDctcp::GetSsThresh()` trả về `static_cast<uint32_t>((1 - m_alpha / 2.0) * tcb->m_cWnd) = m_cWnd` (không giảm một nửa cửa sổ tắc nghẽn như NewReno!).
 
 ### 3.3. Xây dựng Chương trình Thực nghiệm Hợp nhất `dctcp_experiments.cc`
-Để kiểm chứng toàn diện cả hai bài báo (bao gồm các kịch bản mà `dctcp-example.cc` gốc chưa hỗ trợ như tham số hóa `instantMarking` với $K_{1G}=20, K_{10G}=65$, kịch bản hàng đợi răng cưa & CDF `S04`, và kịch bản hội tụ 5 luồng `S05`), chúng tôi đã xây dựng chương trình C++ hợp nhất tại [dctcp_experiments.cc](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/modified/dctcp_experiments.cc) (961 dòng, đặt bản thực thi tại `/home/hhai/ns-allinone-3.42/ns-3.42/scratch/dctcp_experiments.cc`), đi kèm bộ script chạy tự động [run_all_experiments.sh](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/scripts/run_all_experiments.sh) và phân tích/vẽ đồ thị [analyze_and_plot.py](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/scripts/analyze_and_plot.py).
+Để kiểm chứng toàn diện cả hai bài báo (bao gồm các kịch bản mà `dctcp-example.cc` gốc chưa hỗ trợ như tham số hóa `instantMarking` với $K_{1G}=20, K_{10G}=65$, kịch bản hàng đợi răng cưa & CDF `S04`, và kịch bản hội tụ 5 luồng `S05`), chương trình C++ hợp nhất được xây dựng tại [`../../04_SOURCE_CODE/modified/dctcp_experiments.cc`](../../04_SOURCE_CODE/modified/dctcp_experiments.cc) (961 dòng), đi kèm bộ script chạy tự động [`../../04_SOURCE_CODE/scripts/run_all_experiments.sh`](../../04_SOURCE_CODE/scripts/run_all_experiments.sh) và phân tích/vẽ đồ thị [`../../04_SOURCE_CODE/scripts/analyze_and_plot.py`](../../04_SOURCE_CODE/scripts/analyze_and_plot.py).
 
 ---
 
 ## 4. YÊU CẦU 4: KIỂM TRA TÍNH ĐÚNG ĐẮN CỦA CHƯƠNG TRÌNH VÀ MÔ PHỎNG
 
-Toàn bộ 6 bài kiểm thử trong [test_plan.md](file:///home/hhai/BaoCao_NS3/03_DAC_TA_CHUNG/test_plan.md) đã được thực thi và lưu bằng chứng đầy đủ:
+Toàn bộ 6 bài kiểm thử trong [`../../03_DAC_TA_CHUNG/test_plan.md`](../../03_DAC_TA_CHUNG/test_plan.md) đã được thực thi và nghiệm thu:
 
 | Mã TC | Mục tiêu kiểm thử | Cách thực hiện & Tiêu chuẩn đánh giá | Kết quả thực tế & Bằng chứng | Đánh giá |
 |---|---|---|---|---|
-| **TC01** | Kiểm tra môi trường & Biên dịch NS-3.42 | Biên dịch toàn cục `./ns3 build` và các target `dctcp_experiments`, `tcp-validation`, `dctcp-example`; tách biệt sửa lỗi biên dịch thật (`scratch/myfirst.cc:21`) và cấu hình IntelliSense (`.vscode/c_cpp_properties.json`, `.clangd`) | Biên dịch thành công 100% (`Build exit code: 0`) trong [TC01_build.log](file:///home/hhai/BaoCao_NS3/06_KET_QUA/logs/TC01_build.log) *(Lưu ý: CMake mặc định đang đặt `Tests : OFF` nên kiểm chứng tự động được thực hiện qua `tcp-validation` ở TC02)* | **PASS** |
-| **TC02** | Tự kiểm chứng (`tcp-validation`) của NS-3 | Chạy `tcp-validation` với `--validate=dctcp-10ms` và `--validate=dctcp-80ms` (kiểm tra tự động thông lượng `48–49 Mbps` và $\alpha \in [0.055, 0.09]$) | Cả hai lượt chạy kết thúc với **`exit code 0`** (không phát sinh bất kỳ lỗi `Validation failed` nào) tại [S01_validate_dctcp_10ms.log](file:///home/hhai/BaoCao_NS3/06_KET_QUA/logs/S01_validate_dctcp_10ms.log) và [S01_validate_dctcp_80ms.log](file:///home/hhai/BaoCao_NS3/06_KET_QUA/logs/S01_validate_dctcp_80ms.log) | **PASS** |
-| **TC03** | Kiểm chứng tái lập Bảng 5 Bài báo 2 (`S03a`) | Chạy kịch bản Multi-bottleneck 40 luồng mặc định (`flowStartupWindow=1s, convergenceTime=3s, measurementWindow=1s`, tổng `stopTime=5s`, `RngRun=1`) | Thông lượng đạt `S1 = 23.92 Mbps`, `S2 = 469.91 Mbps`, `S3 = 72.49 Mbps`, Fairness `0.996 / 1.000 / 0.998`, khớp sát Bảng 5 Bài báo 2 (`23 / 471 / 74 Mbps`, Fairness `0.99`) tại `06_KET_QUA/csv/S03_multi_bottleneck/S03a_default_seed1-*` | **PASS** |
-| **TC04** | Kiểm chứng ngưỡng đánh dấu tức thời $K$ (`S03b`) & Đối chứng không ECN (`S03c`) | Chạy Multi-bottleneck với `MinTh=MaxTh=K` ($K_{1G}=20, K_{10G}=65$) và với `TcpLinuxReno` không ECN | Dữ liệu xuất đầy đủ tại [S03_multi_bottleneck_comparison.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv); hàng đợi trung bình tại T1 giảm từ `176.0` xuống `79.5` gói (-55%) và tại T2 giảm từ `75.91` xuống `25.82` gói (-66%) | **PASS** |
+| **TC01** | Kiểm tra môi trường & Biên dịch NS-3.42 | Biên dịch toàn cục `./ns3 build` và các target `dctcp_experiments`, `tcp-validation`, `dctcp-example` | Biên dịch thành công 100% (`Build exit code: 0`) | **PASS** |
+| **TC02** | Tự kiểm chứng (`tcp-validation`) của NS-3 | Chạy `tcp-validation` với `--validate=dctcp-10ms` và `--validate=dctcp-80ms` (kiểm tra tự động thông lượng `48–49 Mbps` và $\alpha \in [0.055, 0.09]$) | Cả hai lượt chạy kết thúc với **`exit code 0`** (không phát sinh bất kỳ lỗi `Validation failed` nào) | **PASS** |
+| **TC03** | Kiểm chứng tái lập Bảng 5 Bài báo 2 (`S03a`) | Chạy kịch bản Multi-bottleneck 40 luồng mặc định (`flowStartupWindow=1s, convergenceTime=3s, measurementWindow=1s`, tổng `stopTime=5s`, `RngRun=1`) | Thông lượng đạt `S1 = 23.92 Mbps`, `S2 = 469.91 Mbps`, `S3 = 72.49 Mbps`, Fairness `0.996 / 1.000 / 0.998`, khớp sát Bảng 5 Bài báo 2 (`23 / 471 / 74 Mbps`, Fairness `0.99`) tại [`../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv`](../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv) | **PASS** |
+| **TC04** | Kiểm chứng ngưỡng đánh dấu tức thời $K$ (`S03b`) & Đối chứng không ECN (`S03c`) | Chạy Multi-bottleneck với `MinTh=MaxTh=K` ($K_{1G}=20, K_{10G}=65$) và với `TcpLinuxReno` không ECN | Dữ liệu xuất đầy đủ tại [`../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv`](../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv); hàng đợi trung bình tại T1 giảm từ `176.0` xuống `79.5` gói (-55%) và tại T2 giảm từ `75.91` xuống `25.82` gói (-66%) | **PASS** |
 | **TC05** | Kiểm tra tính lặp lại tất định (Determinism) & Đa hạt giống (Multi-seed) | Chạy lại `S03a` với cùng `RngRun=1` (`S03a_seed1_repeat`) và với `RngRun=2, 3` | Lượt chạy lặp lại `S03a_seed1_repeat` cho kết quả **giống hệt 100%** tới từng chữ số thập phân (`23.92 / 469.91 / 72.49 Mbps`); 3 seed độc lập có độ lệch chuẩn $< 0.3\text{ Mbps}$ ($< 1.2\%$) | **PASS** |
-| **TC06** | Kiểm chứng định luật vật lý & Công thức toán học Bài báo 1 (`S02, S04, S05`) | Kiểm tra tổng thông lượng qua cổ chai ($\le C$) và công thức đỉnh hàng đợi $Q_{\max} \approx K + N$ (Phương trình 10 Bài báo 1) | Thông lượng ứng dụng đạt `0.964 Gbps` trên link `1 Gbps` ($\approx 100\%$ sau trừ mào đầu TCP/IP/Ethernet); với $N=2, K=20$, hàng đợi trung vị đạt đúng **`22.0` gói** ($= K+N$) tại [S04_queue_cdf_summary.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S04_queue_cdf_summary.csv) | **PASS** |
+| **TC06** | Kiểm chứng định luật vật lý & Công thức toán học Bài báo 1 (`S02, S04, S05`) | Kiểm tra tổng thông lượng qua cổ chai ($\le C$) và công thức đỉnh hàng đợi $Q_{\max} \approx K + N$ (Phương trình 10 Bài báo 1) | Thông lượng ứng dụng đạt `0.964 Gbps` trên link `1 Gbps` ($\approx 100\%$ sau trừ mào đầu TCP/IP/Ethernet); với $N=2, K=20$, hàng đợi trung vị đạt đúng **`22.0` gói** ($= K+N$) tại [`../../06_KET_QUA/comparison/S04_queue_cdf_summary.csv`](../../06_KET_QUA/comparison/S04_queue_cdf_summary.csv) | **PASS** |
 
 ---
 
 ## 5. YÊU CẦU 5: THIẾT KẾ KỊCH BẢN THÍ NGHIỆM VÀ KẾT QUẢ THỰC NGHIỆM TRÊN NS-3.42
 
-Chi tiết đặc tả 5 kịch bản được lưu tại [scenario_spec.md](file:///home/hhai/BaoCao_NS3/03_DAC_TA_CHUNG/scenario_spec.md). Dưới đây là thiết kế và kết quả thu được từ dữ liệu mô phỏng thực tế trong `06_KET_QUA/csv/`:
+Chi tiết đặc tả 5 kịch bản được lưu tại [`../../03_DAC_TA_CHUNG/scenario_spec.md`](../../03_DAC_TA_CHUNG/scenario_spec.md). Dưới đây là thiết kế và kết quả thu được từ dữ liệu mô phỏng thực tế trong `06_KET_QUA/csv/`:
 
 ### 5.1. Kịch bản S03: Mạng Đa cổ chai 40 luồng (Multi-Bottleneck Topology — Hình 17 Bài báo 1 & Bảng 5 Bài báo 2)
 - **Cấu trúc mạng** (`dctcp-example.cc` dòng 315–379 & `dctcp_experiments.cc` dòng 374–435):
@@ -161,7 +161,9 @@ Chi tiết đặc tả 5 kịch bản được lưu tại [scenario_spec.md](fil
     - **Nhóm S2 (`20` luồng)**: Đi từ `S2 -> T1 -> T2 -> R2` (mỗi luồng tới 1 máy nhận R2 riêng, $\text{RTT} = 60\mu\text{s}$), chỉ chia sẻ **cổ chai 10Gbps tại `T1 -> T2`** (cùng với 10 luồng S1, tổng cộng 30 luồng qua `T1 -> T2`).
     - **Nhóm S3 (`10` luồng)**: Đi từ `S3 -> T2 -> R1` ($\text{RTT} = 40\mu\text{s}$), chỉ chia sẻ **cổ chai 1Gbps tại `T2 -> R1`** (cùng với 10 luồng S1, tổng cộng 20 luồng qua `T2 -> R1`).
   - **Thời gian mô phỏng**: `flowStartupWindow = 1s`, `convergenceTime = 3s`, `measurementWindow = 1s` (tổng `stopTime = 5s`).
-- **Kết quả thu được** (trích từ [S03_multi_bottleneck_comparison.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv) và biểu đồ [fig1_S03_multi_bottleneck_throughput.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig1_S03_multi_bottleneck_throughput.png)):
+- **Kết quả thu được** (trích từ [`../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv`](../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv)):
+
+![Biểu đồ S03 Multi-Bottleneck Throughput](../../06_KET_QUA/figures/fig1_S03_multi_bottleneck_throughput.png)
 
 | Mã lượt chạy | S1 TB (10 luồng) [Mbps] | Jain S1 | S2 TB (20 luồng) [Mbps] | Jain S2 | S3 TB (10 luồng) [Mbps] | Jain S3 | Tổng T1 [Gbps] | Tổng R1 [Gbps] | Hàng đợi T1 TB [gói / $\mu\text{s}$] | Hàng đợi T2 TB [gói / $\mu\text{s}$] |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -176,7 +178,9 @@ Chi tiết đặc tả 5 kịch bản được lưu tại [scenario_spec.md](fil
 
 ### 5.2. Kịch bản S04: Dao động Răng cưa Hàng đợi và Hàm Phân phối Tích lũy CDF (Hình 1 & Hình 13 Bài báo 1)
 - **Thiết lập** (`dctcp_experiments.cc` dòng 655–764 & `run_all_experiments.sh` dòng 61–67): Topology Star/Dumbbell với $N \in \{2, 20\}$ luồng gửi về 1 máy nhận qua nút cổ chai `1 Gbps`, độ trễ mỗi chặng `25 us` ($\text{RTT} = 100\mu\text{s}$), kích thước bộ đệm `MaxSize = 466p` (`699 KB` với gói `1500B`), ngưỡng đánh dấu DCTCP `MinTh = MaxTh = K = 20` gói (`30 KB`). Thời gian chạy `stopTime = 5s`, lấy mẫu hàng đợi mỗi `1 ms` từ `0.1s` đến `5.0s` (biểu đồ chuỗi thời gian vẽ đoạn ổn định `1.0s–4.0s` tương ứng `3000 ms`).
-- **Kết quả thu được** (trích từ [S04_queue_cdf_summary.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S04_queue_cdf_summary.csv) và biểu đồ [fig4_S04_queue_length_sawtooth_and_cdf.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig4_S04_queue_length_sawtooth_and_cdf.png)):
+- **Kết quả thu được** (trích từ [`../../06_KET_QUA/comparison/S04_queue_cdf_summary.csv`](../../06_KET_QUA/comparison/S04_queue_cdf_summary.csv)):
+
+![Biểu đồ S04 Queue Sawtooth and CDF](../../06_KET_QUA/figures/fig4_S04_queue_length_sawtooth_and_cdf.png)
 
 | Trường hợp | Thông lượng cổ chai [Gbps] | Hàng đợi TB [gói] | Trung vị P50 [gói] | P90 [gói] | P99 [gói] | Cực đại Max [gói] | Bộ đệm TB [KB] | Bộ đệm Max [KB] | Mức tiết kiệm bộ đệm TB |
 |---|---|---|---|---|---|---|---|---|---|
@@ -189,7 +193,10 @@ Chi tiết đặc tả 5 kịch bản được lưu tại [scenario_spec.md](fil
 
 ### 5.3. Kịch bản S05: Tính Hội tụ và Công bằng Động của 5 Luồng (Hình 16 Bài báo 1)
 - **Thiết lập** (`dctcp_experiments.cc` dòng 793–886 & `run_all_experiments.sh` dòng 71–74): 5 luồng chia sẻ liên kết cổ chai `1 Gbps` ($\text{RTT} = 100\mu\text{s}$, $K=20$ gói, `MaxSize=466p`) với bước thời gian `--stepTime=3s` (tổng thời gian mô phỏng `30s`): Luồng 1..5 lần lượt gia nhập tại $t = 0, 3, 6, 9, 12\text{s}$ và lần lượt rời đi tại $t = 30, 27, 24, 21, 18\text{s}$ (lấy mẫu mỗi `200 ms`).
-- **Kết quả thu được** (biểu đồ [fig5_S05_convergence_5flows.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig5_S05_convergence_5flows.png) và dữ liệu [S05_dctcp_5flows-convergence.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/csv/S05_convergence/S05_dctcp_5flows-convergence.csv)):
+
+![Biểu đồ S05 Convergence 5 Flows](../../06_KET_QUA/figures/fig5_S05_convergence_5flows.png)
+
+- **Kết quả thu được** (dữ liệu [`../../06_KET_QUA/csv/S05_convergence/S05_dctcp_5flows-convergence.csv`](../../06_KET_QUA/csv/S05_convergence/S05_dctcp_5flows-convergence.csv)):
   - **DCTCP (Panel a)**: Khi Luồng 2 gia nhập tại $t = 3\text{s}$ (trong điều kiện không bật Pacing và `DctcpAlphaOnInit = 1.0`), Luồng 2 bị ép cửa sổ trong khoảng `3s–6s` (`< 6 Mbps` trong khi Luồng 1 giữ `964 Mbps`). Tuy nhiên, ngay khi Luồng 3 gia nhập tại $t = 6\text{s}$, cả 3 luồng lập tức hội tụ về đúng mức `~321 Mbps/luồng`, và trong suốt phần còn lại của mô phỏng ($t \in [6\text{s}, 30\text{s}]$, qua các bậc $k = 3, 4, 5, 4, 3, 2, 1$ luồng), tất cả các luồng DCTCP bám sát nhau theo đúng đường bậc thang lý thuyết $\frac{964\text{ Mbps}}{k}$ (`321`, `241`, `193`, `241`, `321`, `482`, `964 Mbps`).
   - **TCP không ECN (Panel b)**: Các luồng tranh chấp bộ đệm `466p` và đánh rơi gói gay gắt, gây bất công bằng nghiêm trọng và dao động biên độ lớn trong suốt quá trình mô phỏng.
 
@@ -197,7 +204,11 @@ Chi tiết đặc tả 5 kịch bản được lưu tại [scenario_spec.md](fil
 
 ### 5.4. Kịch bản S02: Đơn luồng Dumbbell 50 Mbps với RTT Biến thiên và Kiểm tra Không-ECN (Hình 9–16 Bài báo 2)
 - **Thiết lập** (`dctcp_experiments.cc` dòng 86–200): 1 máy gửi nối 1 máy nhận qua cổ chai `50 Mbps`, `RedQueueDisc` (`MinTh=17, MaxTh=34` gói theo Bảng 4 Bài báo 2, `MaxSize=500p`, `EnablePacing=true`), khảo sát $\text{RTT} \in \{3\mu\text{s}, 10\text{ms}, 50\text{ms}\}$ với ECN bật (`stopTime=15s`), và $\text{RTT} = 10\text{ms}$ khi tắt ECN trên router (`enableSwitchEcn=false`).
-- **Kết quả thu được** (trích từ [S02_single_flow_summary.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S02_single_flow_summary.csv), [fig2_S02_single_flow_varying_rtt.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig2_S02_single_flow_varying_rtt.png) và [fig3_S02_fallback_no_ecn.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig3_S02_fallback_no_ecn.png)):
+- **Kết quả thu được** (trích từ [`../../06_KET_QUA/comparison/S02_single_flow_summary.csv`](../../06_KET_QUA/comparison/S02_single_flow_summary.csv)):
+
+![Biểu đồ S02 Single Flow Varying RTT](../../06_KET_QUA/figures/fig2_S02_single_flow_varying_rtt.png)
+
+![Biểu đồ S02 Fallback Without ECN](../../06_KET_QUA/figures/fig3_S02_fallback_no_ecn.png)
 
 | Trường hợp (`t >= 5s`) | `cwnd` TB ổn định [segments] | `cwnd` Min – Max [segments] | Trễ hàng đợi TB [ms] | Độ dài hàng đợi TB [gói] | Thông lượng TB ổn định [Mbps] |
 |---|---|---|---|---|---|
@@ -219,7 +230,7 @@ Chi tiết đặc tả 5 kịch bản được lưu tại [scenario_spec.md](fil
 | **2. Tỷ lệ tiết kiệm bộ đệm so với TCP tại 1Gbps** | Giảm **> 90%** mức chiếm dụng bộ đệm nhưng vẫn đạt $\approx 100\%$ thông lượng (Abstract & Hình 13) | Khẳng định giữ hàng đợi ngắn mà không làm suy giảm thông lượng (Mục 4.2) | Giảm **92.8%** bộ đệm ở 2 luồng (`32.31 KB` so với `448.22 KB`) và **92.7%** ở 20 luồng (`40.67 KB` so với `554.36 KB`); thông lượng tăng từ `0.9491` lên `0.9640 Gbps` | **Khớp hoàn toàn** với kết luận của Bài báo 1 |
 | **3. Multi-bottleneck 40 luồng (`S03a` — cấu hình Bài báo 2)** | Lý thuyết Max-Min: `S1 = 50`, `S2 = 475`, `S3 = 50 Mbps`; Testbed Hình 17: **`46 / 475 / 54 Mbps`** ($J=0.99$) | Bảng 5 (trang 71): **`S1 = 23 Mbps`, `S2 = 471 Mbps`, `S3 = 74 Mbps`**, Fairness **`0.99 / 0.99 / 0.99`** | Trung bình 3 seed: **`S1 = 23.65 Mbps` ($J=0.99$), `S2 = 470.04 Mbps` ($J=1.00$), `S3 = 72.75 Mbps` ($J=0.998$)** | **Khớp tuyệt đối với Bảng 5 Bài báo 2** (sai lệch $< 3\%$) và khớp S2 (`470` vs `475 Mbps`) của Bài báo 1 |
 | **4. Multi-bottleneck với đánh dấu tức thời `MinTh=MaxTh=K` (`S03b`)** | Dùng $K_{1G}=20, K_{10G}=65$ để giữ hàng đợi cực ngắn trên cả link 1G và 10G | Tác giả Bài báo 2 dùng `MinTh=50..150` (10G) và `20..60` (1G) nên chưa khảo sát `MinTh=MaxTh=K` | Giảm độ dài hàng đợi T1 **55%** (`176.0` $\to$ `79.5` gói) và T2 **66%** (`75.9` $\to$ `25.8` gói), giữ nguyên tổng thông lượng T1 = `9.637 Gbps` | Chứng minh đóng góp của cấu hình $K$ tức thời đối với việc giảm trễ hàng đợi |
-| **5. Hội tụ 5 luồng khởi động lệch pha (`S05`)** | Hình 16 (trang 72): DCTCP hội tụ nhanh và chia sẻ đúng $1/k$ dung lượng; TCP dao động mạnh | Không tái hiện riêng Hình 16 (chỉ đánh giá Jain's index ở Bảng 5) | [fig5_S05_convergence_5flows.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig5_S05_convergence_5flows.png) tái hiện đường bậc thang đối xứng $1/k$ của DCTCP từ `6s–30s` so với nhiễu loạn của TCP | **Khớp xu thế Hình 16 Bài báo 1** (ghi nhận thêm hiện tượng trễ hội tụ của Luồng 2 đoạn `3s–6s`) |
+| **5. Hội tụ 5 luồng khởi động lệch pha (`S05`)** | Hình 16 (trang 72): DCTCP hội tụ nhanh và chia sẻ đúng $1/k$ dung lượng; TCP dao động mạnh | Không tái hiện riêng Hình 16 (chỉ đánh giá Jain's index ở Bảng 5) | Biểu đồ `fig5_S05_convergence_5flows.png` tái hiện đường bậc thang đối xứng $1/k$ của DCTCP từ `6s–30s` so với nhiễu loạn của TCP | **Khớp xu thế Hình 16 Bài báo 1** (ghi nhận thêm hiện tượng trễ hội tụ của Luồng 2 đoạn `3s–6s`) |
 | **6. Hành vi khi Router không bật ECN (`S02` no-ECN)** | Không xét (giả thiết toàn bộ switch trong DC đều bật ECN) | Mục 4.3 (Hình 15–16, trang 70–72): Tuyên bố DCTCP tự động giảm một nửa `cwnd` giống NewReno khi mất gói | Phát hiện trong NS-3.42 (`tcp-dctcp.cc:121, 135`): Khi `UseEcn=false` tại switch, `TcpDctcp::Init` vẫn bật ECN và `GetSsThresh()` trả về `(1 - 0)*cwnd = cwnd`, gây tràn bộ đệm & RTO định kỳ (`18.75 Mbps`) | **Phát hiện kỹ thuật quan trọng** xác nhận cảnh báo Doxygen trong `tcp-dctcp.h:36-40` |
 
 ### 6.2. Ba Nhận xét và Giải thích Kỹ thuật Chuyên sâu
@@ -241,30 +252,24 @@ Chi tiết đặc tả 5 kịch bản được lưu tại [scenario_spec.md](fil
 
 ## 7. PHỤ LỤC: CẤU TRÚC MÃ NGUỒN VÀ HƯỚNG DẪN TÁI LẬP ĐẦY ĐỦ
 
-### 7.1. Danh mục Tệp Bàn giao trong Dự án `/home/hhai/BaoCao_NS3`
-1. **Phân tích, Đối chiếu Lý thuyết & Hậu kiểm (`02_PHAN_TICH/`)**:
-   - [T01_phan_tich_bai_bao_1_DCTCP_SIGCOMM10.md](file:///home/hhai/BaoCao_NS3/02_PHAN_TICH/GEMINI/T01_phan_tich_bai_bao_1_DCTCP_SIGCOMM10.md)
-   - [T02_phan_tich_bai_bao_2_DCTCP_WNS3_2020.md](file:///home/hhai/BaoCao_NS3/02_PHAN_TICH/GEMINI/T02_phan_tich_bai_bao_2_DCTCP_WNS3_2020.md)
-   - [tong_hop_so_sanh_2_bai_bao.md](file:///home/hhai/BaoCao_NS3/02_PHAN_TICH/GEMINI/tong_hop_so_sanh_2_bai_bao.md)
-   - [T03_T04_doi_chieu_NS3_42_va_diem_chua_chac_chan.md](file:///home/hhai/BaoCao_NS3/02_PHAN_TICH/DOI_CHIEU/T03_T04_doi_chieu_NS3_42_va_diem_chua_chac_chan.md)
-   - [FINAL_AUDIT_DCTCP_NS3_42.md](file:///home/hhai/BaoCao_NS3/02_PHAN_TICH/DOI_CHIEU/FINAL_AUDIT_DCTCP_NS3_42.md)
-2. **Đặc tả Chuẩn & Kế hoạch Kiểm thử (`03_DAC_TA_CHUNG/`)**:
-   - [model_spec.md](file:///home/hhai/BaoCao_NS3/03_DAC_TA_CHUNG/model_spec.md)
-   - [scenario_spec.md](file:///home/hhai/BaoCao_NS3/03_DAC_TA_CHUNG/scenario_spec.md)
-   - [test_plan.md](file:///home/hhai/BaoCao_NS3/03_DAC_TA_CHUNG/test_plan.md)
-3. **Mã nguồn & Script Tự động hóa (`04_SOURCE_CODE/`)**:
-   - Bản gốc NS-3.42: [04_SOURCE_CODE/original/](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/original/) (`tcp-dctcp.h`, `tcp-dctcp.cc`, `tcp-dctcp-test.cc`, `tcp-ecn-test.cc`, `dctcp-example.cc`, `tcp-validation.cc`)
-   - Chương trình thực nghiệm mở rộng: [dctcp_experiments.cc](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/modified/dctcp_experiments.cc)
-   - Script thực thi & vẽ đồ thị: [run_all_experiments.sh](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/scripts/run_all_experiments.sh), [analyze_and_plot.py](file:///home/hhai/BaoCao_NS3/04_SOURCE_CODE/scripts/analyze_and_plot.py)
-4. **Dữ liệu Thực nghiệm (`csv/`), Log (`logs/`), Bảng So sánh (`comparison/`) & Biểu đồ (`figures/`) trong `06_KET_QUA/`**:
-   - Báo cáo đối chiếu số liệu: [bao_cao_doi_chieu_ket_qua_T06.md](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/bao_cao_doi_chieu_ket_qua_T06.md)
-   - Bảng CSV tổng hợp: [S03_multi_bottleneck_comparison.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv), [S04_queue_cdf_summary.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S04_queue_cdf_summary.csv), [S02_single_flow_summary.csv](file:///home/hhai/BaoCao_NS3/06_KET_QUA/comparison/S02_single_flow_summary.csv)
+### 7.1. Danh mục Tệp trong Kho Mã nguồn Dự án
+1. **Đặc tả Chuẩn & Kế hoạch Kiểm thử (`03_DAC_TA_CHUNG/`)**:
+   - [`../../03_DAC_TA_CHUNG/model_spec.md`](../../03_DAC_TA_CHUNG/model_spec.md)
+   - [`../../03_DAC_TA_CHUNG/scenario_spec.md`](../../03_DAC_TA_CHUNG/scenario_spec.md)
+   - [`../../03_DAC_TA_CHUNG/test_plan.md`](../../03_DAC_TA_CHUNG/test_plan.md)
+2. **Mã nguồn & Script Tự động hóa (`04_SOURCE_CODE/`)**:
+   - Bản gốc NS-3.42: [`../../04_SOURCE_CODE/original/`](../../04_SOURCE_CODE/original/) (`tcp-dctcp.h`, `tcp-dctcp.cc`, `tcp-dctcp-test.cc`, `tcp-ecn-test.cc`, `dctcp-example.cc`, `tcp-validation.cc`)
+   - Chương trình thực nghiệm mở rộng: [`../../04_SOURCE_CODE/modified/dctcp_experiments.cc`](../../04_SOURCE_CODE/modified/dctcp_experiments.cc)
+   - Script thực thi & vẽ đồ thị: [`../../04_SOURCE_CODE/scripts/run_all_experiments.sh`](../../04_SOURCE_CODE/scripts/run_all_experiments.sh), [`../../04_SOURCE_CODE/scripts/analyze_and_plot.py`](../../04_SOURCE_CODE/scripts/analyze_and_plot.py)
+3. **Dữ liệu Thực nghiệm (`csv/`), Bảng So sánh (`comparison/`) & Biểu đồ (`figures/`) trong `06_KET_QUA/`**:
+   - Báo cáo đối chiếu số liệu: [`../../06_KET_QUA/comparison/bao_cao_doi_chieu_ket_qua_T06.md`](../../06_KET_QUA/comparison/bao_cao_doi_chieu_ket_qua_T06.md)
+   - Bảng CSV tổng hợp: [`../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv`](../../06_KET_QUA/comparison/S03_multi_bottleneck_comparison.csv), [`../../06_KET_QUA/comparison/S04_queue_cdf_summary.csv`](../../06_KET_QUA/comparison/S04_queue_cdf_summary.csv), [`../../06_KET_QUA/comparison/S02_single_flow_summary.csv`](../../06_KET_QUA/comparison/S02_single_flow_summary.csv)
    - 5 Biểu đồ PNG:
-     1. [fig1_S03_multi_bottleneck_throughput.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig1_S03_multi_bottleneck_throughput.png)
-     2. [fig2_S02_single_flow_varying_rtt.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig2_S02_single_flow_varying_rtt.png)
-     3. [fig3_S02_fallback_no_ecn.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig3_S02_fallback_no_ecn.png)
-     4. [fig4_S04_queue_length_sawtooth_and_cdf.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig4_S04_queue_length_sawtooth_and_cdf.png)
-     5. [fig5_S05_convergence_5flows.png](file:///home/hhai/BaoCao_NS3/06_KET_QUA/figures/fig5_S05_convergence_5flows.png)
+     1. [`../../06_KET_QUA/figures/fig1_S03_multi_bottleneck_throughput.png`](../../06_KET_QUA/figures/fig1_S03_multi_bottleneck_throughput.png)
+     2. [`../../06_KET_QUA/figures/fig2_S02_single_flow_varying_rtt.png`](../../06_KET_QUA/figures/fig2_S02_single_flow_varying_rtt.png)
+     3. [`../../06_KET_QUA/figures/fig3_S02_fallback_no_ecn.png`](../../06_KET_QUA/figures/fig3_S02_fallback_no_ecn.png)
+     4. [`../../06_KET_QUA/figures/fig4_S04_queue_length_sawtooth_and_cdf.png`](../../06_KET_QUA/figures/fig4_S04_queue_length_sawtooth_and_cdf.png)
+     5. [`../../06_KET_QUA/figures/fig5_S05_convergence_5flows.png`](../../06_KET_QUA/figures/fig5_S05_convergence_5flows.png)
 
 ### 7.2. Quy trình Lệnh Tái lập Thực nghiệm từ Đầu
 ```bash

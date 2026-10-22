@@ -1,9 +1,7 @@
-# Báo cáo Đối chiếu Kết quả Thực nghiệm NS-3.42 với Hai Bài báo Công bố (T06)
+# Báo cáo Đối chiếu Kết quả Thực nghiệm NS-3.42 với Hai Bài báo Công bố
 
-> **Ngày thực hiện & cập nhật hậu kiểm**: 2026-10-22  
-> **Người thực hiện**: Gemini (AI Điều phối & Hậu kiểm)  
-> **Môi trường**: NS-3.42 (`/home/hhai/ns-allinone-3.42/ns-3.42`)  
-> **Dữ liệu gốc**: `06_KET_QUA/csv/`, `06_KET_QUA/logs/`, `06_KET_QUA/comparison/*.csv`, `06_KET_QUA/figures/*.png`
+> **Môi trường mô phỏng**: NS-3.42 (`/home/hhai/ns-allinone-3.42/ns-3.42`)  
+> **Nguồn dữ liệu**: `06_KET_QUA/csv/`, `06_KET_QUA/comparison/*.csv`, `06_KET_QUA/figures/*.png`
 
 ---
 
@@ -13,7 +11,7 @@ Toàn bộ 5 nhóm kịch bản (**S01** đến **S05**) và 6 trường hợp k
 
 1. **S01 (Validation / Tự kiểm chứng DCTCP chuẩn của NS-3)**:
    - Thực thi `ns3.42-tcp-validation-default` với `--validate=dctcp-10ms` và `--validate=dctcp-80ms` (`g=0.0625`, cổ chai `50 Mbps`).
-   - **Kết quả**: Cả hai kịch bản kết thúc với **exit code `0`** (`06_KET_QUA/logs/S01_validate_dctcp_10ms.log`, `S01_validate_dctcp_80ms.log`), vượt qua toàn bộ các kiểm tra ngưỡng nội bộ của NS-3.42 (thông lượng ổn định đạt `48.2 Mbps`, hệ số $\alpha$ dao động đúng trong dải kỳ vọng).
+   - **Kết quả**: Cả hai kịch bản kết thúc với **exit code `0`**, vượt qua toàn bộ các kiểm tra ngưỡng nội bộ của NS-3.42 (thông lượng ổn định đạt `48.2 Mbps`, hệ số $\alpha$ dao động đúng trong dải kỳ vọng).
 
 2. **S03 (Multi-bottleneck 40 luồng — Hình 17 Bài báo 1 & Bảng 5 Bài báo 2)**:
    - Đã chạy 6 lượt mô phỏng độc lập (`flowStartupWindow=1s, convergenceTime=3s, measurementWindow=1s`, tổng `5s`): `S03a_seed1`, `S03a_seed2`, `S03a_seed3`, `S03a_seed1_repeat` (cấu hình mặc định của tác giả Bài báo 2 trong `dctcp-example.cc`), `S03b_instantK` (cấu hình ngưỡng tức thời `MinTh=MaxTh=K` của Bài báo 1 với $K_{1G}=20, K_{10G}=65$), và `S03c_tcp_noecn` (đối chứng `TcpLinuxReno` không ECN).
